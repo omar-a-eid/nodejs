@@ -1,0 +1,16 @@
+h1 {
+  padding: 20px;
+  background-color: brown;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+form div {
+  margin: 1em;
+}
+input {
+  padding: 5px;
+  width: 80%;
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "omar",
+    "mobile": "123456789",
+    "addr": "test",
+    "email": "omar@gmail.com"
+  },
+  {
+    "name": "ahme",
+    "mobile": "978451",
+    "addr": "test2",
+    "email": "ahmed@gmail.com"
+  },
+  {
+    "name": "test34",
+    "mobile": "45465",
+    "addr": "asdf",
+    "email": "test3@gmail.com"
+  }
+]

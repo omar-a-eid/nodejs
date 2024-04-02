@@ -2,42 +2,38 @@ const http = require("http");
 const fs = require("fs").promises;
 
 http
-  .createServer(async function (req, res) {
+  .createServer(async (req, res) => {
     const url = req.url;
 
-    if (url == "/favicon.ico") {
-      res.end();
-      return;
-    }
+    if (url == "/favicon.ico") return res.end();
 
-    const urlParts = url.split("/");
-    if (urlParts.length < 4) {
-      res.write(
+    const [operation, ...operands] = url.split("/").filter(Boolean);
+
+    if (!operation || operands.length < 2) {
+      return res.end(
         "<p>Please Enter an operatons and at least two operands ex. /add/3/4</p>"
       );
-      res.end();
-      return;
     }
 
-    const operation = urlParts[1];
-    let result = +urlParts[2];
+    let result = +operands.shift();
 
-    for (let i = 3; i < urlParts.length; i++) {
-      let operand = +urlParts[i];
+    for (const operand of operands) {
       switch (operation) {
         case "add":
-          result += operand;
+          result += +operand;
           break;
         case "mult":
-          result *= operand;
+          result *= +operand;
           break;
         case "div":
-          result /= operand;
+          result /= +operand;
           break;
         case "minus":
-          result -= operand;
+          result -= +operand;
           break;
         default:
+          res.end(`Wrong operation`);
+
           break;
       }
     }
@@ -48,7 +44,6 @@ http
       console.error("Error", err);
     }
 
-    res.write(`Result: ${result}`);
-    res.end();
+    res.end(`Result: ${result}`);
   })
   .listen(7000);

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greatings</title>
+  </head>
+  <body>
+    <p>Welcome {clientName} your entered data as follows:</p>
+    <ul>
+      <li>Mobile Number: {mobileNumber}</li>
+      <li>Email: {email}</li>
+      <li>Address: {address}</li>
+    </ul>
+    <button id="btn">Older Data</button>
+    <div id="container"></div>
+    <script>
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", () => {
+        const container = document.getElementById("container");
+        fetch("../clientData.json")
+          .then((response) => response.json())
+          .then((data) => {
+            container.innerHTML = "";
+            data.forEach((entry) => {
+              const clientDiv = document.createElement("div");
+              clientDiv.classList.add("client-entry");
+
+              clientDiv.innerHTML = `
+          <p><strong>Name:</strong> ${entry.name}</p>
+          <p><strong>Mobile:</strong> ${entry.mobile}</p>
+          <p><strong>Address:</strong> ${entry.addr}</p>
+          <p><strong>Email:</strong> ${entry.email}</p>
+          <hr />
+        `;
+
+              container.appendChild(clientDiv);
+            });
+          });
+      });
+    </script>
+  </body>
+</html>

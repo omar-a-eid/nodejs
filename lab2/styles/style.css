@@ -1,0 +1,11 @@
+h1 {
+  padding: 20px;
+  background-color: brown;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+form div {
+  margin: 1em;
+}
