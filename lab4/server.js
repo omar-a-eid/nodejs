@@ -2,9 +2,9 @@ import express from "express";
 import { Server } from "socket.io";
 
 const app = express();
-const expressServer = app.listen(3500);
+const PORT = process.env.PORT || 3000;
+const expressServer = app.listen(PORT);
 const io = new Server(expressServer);
-
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
